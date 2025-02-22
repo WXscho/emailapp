@@ -1,5 +1,8 @@
+# time modules
+from datetime import datetime, timedelta
+from time import time, sleep
+import pytz
 
-from datetime import datetime, time, timedelta, date
 import smtplib, ssl
 
 # SMTP essentially provides functions for connecting
@@ -13,11 +16,15 @@ from email.mime.text import MIMEText
 # encoding and decoding emails with the MIME
 # (Multipurpose internet Mail extensions) standard.
 
-from getpass import getpass
+
 # used to get passwords without turning your password into plain text
 
-# app gmail password
-password = input("Input your password: ")
+# app gmail password rvhq cumf hhtr yxuq
+
+password = input("Input your app password: ")
+
+
+
 #email contacts
 sender= "testwxray@gmail.com"
 recipients = "testwxray@gmail.com"
@@ -27,6 +34,15 @@ port = 465
 #meta data
 subject = "test subject"
 body = "body of text message"
+# set_date sets the date the email will be sent
+
+set_date = input("input date in format(YYYY-MM-DD): ")
+set_time = input("input date in format(HH:MM:SS): ")
+#format_date = "%Y-%m-%d"
+format_date = "%Y-%m-%d"
+format_time = "%H:%M:%S"
+
+formated_set_date_time = set_date + " " + set_time
 
 #creating a function to assemble all email components
 
@@ -38,6 +54,7 @@ def email_new(g_sender, g_recipients, g_subject, g_body, g_password):
   e_msg['From'] = g_sender
   # creates the connection between the program and the gmail account
   context = ssl.create_default_context()
+
   try:
     with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
       # login for the SMTP server is the users gmail account
@@ -48,8 +65,16 @@ def email_new(g_sender, g_recipients, g_subject, g_body, g_password):
   except Exception as e:
     print(f" Exception: {e}")
 
-
-email_new(sender, recipients, subject, body, password)
+print(f"date and time: {datetime.now(pytz.timezone('US/Central'))}  formated_set_date_time: {formated_set_date_time}")
+while True:
+  sleep(1)
+  # todo convert timezone into usable comparison format
+  print(datetime.now(pytz.timezone('US/Central')))
+  print(formated_set_date_time)
+  if datetime.now(pytz.timezone('US/Central')) == formated_set_date_time:
+    email_new(sender, recipients, subject, body, password)
+    break
+# email_new(sender, recipients, subject, body, password)
 #In both instances, Gmail will encrypt
 # emails using TLS, as this is the more
 # secure successor of SSL. As per Python’s
