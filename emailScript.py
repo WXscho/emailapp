@@ -28,7 +28,7 @@ port = 465
 subject = "test subject"
 body = "body of text message"
 
-#TODO creating a function to assemble all email components
+#creating a function to assemble all email components
 
 def email_new(g_sender, g_recipients, g_subject, g_body, g_password):
   # lists off headings for the email in order they are inserted into the list
