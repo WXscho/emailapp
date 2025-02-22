@@ -68,7 +68,7 @@ def email_new(g_sender, g_recipients, g_subject, g_body, g_password):
 print(f"date and time: {datetime.now(pytz.timezone('US/Central'))}  formated_set_date_time: {formated_set_date_time}")
 while True:
   sleep(1)
-  # todo convert timezone into usable comparison format
+  # to convert timezone into usable comparison format
   print(datetime.now(pytz.timezone('US/Central')))
   print(formated_set_date_time)
   if datetime.now(pytz.timezone('US/Central')) == formated_set_date_time:
